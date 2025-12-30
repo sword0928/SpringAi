@@ -1,0 +1,26 @@
+spring:
+  ai:
+    openai:
+#      ?????
+#      api-key: sk-b72a3a39a47842159edc650a99ac1a77
+      api-key: sk-1a7d16ceaf1b4ce783f9a4fa43b67f82
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-reasoner
+  datasource:
+    url: jdbc:mysql://192.168.31.50:3306/demo?useSSL=false&serverTimezone=Asia/Shanghai
+    username: demo
+    password: demo123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: 192.168.31.50
+      port: 6379
+      timeout: 5000
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    org.asksword.ai: debug
+
