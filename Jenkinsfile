@@ -21,7 +21,7 @@ pipeline {
             agent {
                 // 使用 Maven 官方 Docker 镜像打包
                 docker {
-                    image 'maven:3.9.1-openjdk-17'
+                    image '101.132.60.25:5000/maven:3.9.11'
                     args '-v $HOME/.m2:/root/.m2'  // 持久化 Maven 本地仓库，加速依赖下载
                 }
             }
