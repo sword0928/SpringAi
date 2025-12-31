@@ -49,14 +49,24 @@ pipeline {
             }
         }
 
-        stage('Docker Compose Up') {
-            steps {
-                sh '''
-                COMPOSE_FILE=/opt/services/docker-compose.yml
-                /usr/libexec/docker/cli-plugins/docker-compose -f $COMPOSE_FILE up -d --build
-                '''
-            }
-        }
+//         stage('Docker Compose Up') {
+//             steps {
+//                 sh '''
+//                 COMPOSE_FILE=/opt/services/docker-compose.yml
+//                 /usr/libexec/docker/cli-plugins/docker-compose -f $COMPOSE_FILE up -d --build
+//                 '''
+//             }
+//         }
+         stage('Run Spring Boot') {
+             steps {
+                 sh '''
+                 docker stop springai-service || true
+                 docker rm springai-service || true
+                 docker run -d --name springai-service -p 8080:8080 springai:latest
+                 '''
+             }
+         }
+
     }
 
     post {
