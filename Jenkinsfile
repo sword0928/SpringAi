@@ -52,7 +52,14 @@ pipeline {
         stage('Docker Compose Up') {
             steps {
                 // 启动 Spring Boot + MySQL + Redis 服务
-                sh 'docker compose -f docker-compose.yml up -d --build'
+                sh '''
+                        docker run --rm \
+                          -v /var/run/docker.sock:/var/run/docker.sock \
+                          -v "$PWD:$PWD" \
+                          -w "$PWD" \
+                          docker/compose:2.27.0 \
+                          -f docker-compose.yml up -d --build
+                        '''
             }
         }
     }
