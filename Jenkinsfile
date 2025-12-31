@@ -53,7 +53,7 @@ pipeline {
             steps {
                 sh '''
                 COMPOSE_FILE=/opt/services/docker-compose.yml
-                docker compose -f $COMPOSE_FILE up -d --build
+                /usr/libexec/docker/cli-plugins/docker-compose -f $COMPOSE_FILE up -d --build
                 '''
             }
         }
