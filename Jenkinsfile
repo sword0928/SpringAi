@@ -41,7 +41,7 @@ pipeline {
                 unstash 'jar'
                 sh '''
                   ls -lh target
-                  docker build --platform=linux/amd64 -t ${DOCKER_IMAGE} .
+                  docker build --platform=linux/arm64 -t ${DOCKER_IMAGE} .
                 '''
                 // 如果有私有仓库，可推送到远程
                 // sh 'docker tag $DOCKER_IMAGE registry.cn-hangzhou.aliyuncs.com/yourrepo/springai:latest'
