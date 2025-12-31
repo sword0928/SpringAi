@@ -1,7 +1,7 @@
 #FROM openjdk:17-jdk
 # 选择基础镜像，包含 JRE 17 用于运行 Java 程序
 # 优势：镜像体积小，仅用于运行，不包含开发工具
-FROM eclipse-temurin:17-jre
+FROM 101.132.60.25:5000/eclipse-temurin:17-jre
 
 # 设置容器内的工作目录为 /app
 # COPY、ENTRYPOINT 等命令都会基于这个目录
