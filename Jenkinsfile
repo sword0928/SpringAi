@@ -22,19 +22,27 @@ pipeline {
                 // 使用 Maven 官方 Docker 镜像打包
                 docker {
                     image '101.132.60.25:5000/maven:3.9.11'
-                    args '-v $HOME/.m2:/root/.m2'  // 持久化 Maven 本地仓库，加速依赖下载
+                    args '-v /var/jenkins_home/.m2:/root/.m2'  // 持久化 Maven 本地仓库，加速依赖下载
                 }
             }
             steps {
-                sh 'mvn clean package -DskipTests'
-//                 sh 'mvn clean package -DskipTests -B -T 1C'
+                sh '''
+                  mvn clean package -DskipTests -B -T 1C
+                  ls -lh target
+                '''
+                // 把 jar 带出 Docker agent
+                stash name: 'jar', includes: 'target/*.jar'
             }
         }
 
         stage('Docker Build & Push') {
             steps {
-                // 构建 Docker 镜像
-                sh 'docker build -t $DOCKER_IMAGE .'
+                // 恢复jar
+                unstash 'jar'
+                sh '''
+                  ls -lh target
+                  docker build --platform=linux/amd64 -t ${DOCKER_IMAGE} .
+                '''
                 // 如果有私有仓库，可推送到远程
                 // sh 'docker tag $DOCKER_IMAGE registry.cn-hangzhou.aliyuncs.com/yourrepo/springai:latest'
                 // sh 'docker push registry.cn-hangzhou.aliyuncs.com/yourrepo/springai:latest'
