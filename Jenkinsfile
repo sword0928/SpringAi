@@ -2,23 +2,30 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "springai:latest"  // Docker 镜像名称
-        COMPOSE_FILE = "docker-compose.yml"
+        DOCKER_IMAGE = "springai:latest"      // Spring Boot Docker 镜像名称
+        COMPOSE_FILE = "docker-compose.yml"  // docker-compose 文件
+        BRANCH = "dev"                        // GitHub 分支
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // 从 GitHub 拉取代码
-                git branch: 'dev',
+                // 拉取 GitHub 代码，需要提前在 Jenkins 配置 SSH 凭证 github-ssh
+                git branch: "${BRANCH}",
                     url: 'git@github.com:sword0928/SpringAi.git',
                     credentialsId: 'github-ssh'
             }
         }
 
-        stage('Build Maven') {
+        stage('Maven Build') {
+            agent {
+                // 使用 Maven 官方 Docker 镜像打包
+                docker {
+                    image 'maven:3.9.1-openjdk-17'
+                    args '-v $HOME/.m2:/root/.m2'  // 持久化 Maven 本地仓库，加速依赖下载
+                }
+            }
             steps {
-                // 使用 Maven 打包 Spring Boot 项目
                 sh 'mvn clean package -DskipTests'
             }
         }
