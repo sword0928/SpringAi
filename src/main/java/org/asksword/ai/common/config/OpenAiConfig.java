@@ -1,4 +1,4 @@
-package org.asksword.ai.config;
+package org.asksword.ai.common.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -14,7 +14,7 @@ public class OpenAiConfig {
     public ChatClient chatClient(OpenAiChatModel openAiChatModel) {
         //创建ChstClient实例
         return ChatClient.builder(openAiChatModel)
-                .defaultSystem("你是Sword Ai助手，你的名称叫做嘿嘿。")
+                .defaultSystem("你是Sword Ai助手，你的名称叫做問剑。")
                 //配置日志Advisor
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();

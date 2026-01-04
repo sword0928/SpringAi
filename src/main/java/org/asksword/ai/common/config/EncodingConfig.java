@@ -1,4 +1,4 @@
-package org.asksword.ai.config;
+package org.asksword.ai.common.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

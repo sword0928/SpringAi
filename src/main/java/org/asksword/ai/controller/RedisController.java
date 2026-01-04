@@ -21,4 +21,9 @@ public class RedisController {
     public String get() {
         return redisTemplate.opsForValue().get("name");
     }
+
+    @GetMapping("/redis/remove")
+    public Boolean remove() {
+        return redisTemplate.delete("name");
+    }
 }

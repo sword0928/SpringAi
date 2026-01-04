@@ -1,5 +1,6 @@
 package org.asksword.ai.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,7 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/ai")
+@Slf4j
 public class ChatAiController {
 
     @Autowired
@@ -25,6 +27,7 @@ public class ChatAiController {
 
     @RequestMapping(value = "/chat2")
     public Flux<String> fluxChat(String prompt) {
+        log.info("prompt = {}", prompt);
         return chatClient.prompt()
                 .user(prompt)
                 .stream()

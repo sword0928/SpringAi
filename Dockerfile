@@ -16,6 +16,5 @@ COPY target/*.jar springai-service.jar
 EXPOSE 8080
 
 # 容器启动时执行的命令
-# java -jar app.jar 启动 Spring Boot 应用
 ENTRYPOINT ["java", "-jar", "springai-service.jar"]
 

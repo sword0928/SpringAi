@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="sword-ai-service" source="spring.profiles.active"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %date{YYYY-mm-DD HH:mm:ss.SSS} [%thread] %-5level [traceId = %X{traceId}] method=%X{method} url = %X{url} status = %X{status} cost = %X{cost}ms - %msg%n%ex
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 根日志 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- 降噪 -->
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.apache.catalina" level="WARN"/>
+    <logger name="org.hibernate.SQL" level="WARN"/>
+
+    <!-- dev 环境额外 debug 日志 -->
+    <springProfile name="dev">
+        <logger name="com.sword" level="DEBUG"/>
+    </springProfile>
+
+</configuration>
