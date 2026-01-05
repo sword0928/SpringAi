@@ -1,5 +1,7 @@
 package org.asksword.ai.controller;
 
+import org.asksword.ai.common.NoneMessage;
+import org.asksword.ai.common.SwordResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,18 +14,20 @@ public class RedisController {
     private StringRedisTemplate redisTemplate;
 
     @GetMapping("/redis/set")
-    public String set() {
+    public SwordResponse<NoneMessage> set() {
         redisTemplate.opsForValue().set("name", "demo");
-        return "ok";
+        return SwordResponse.success();
     }
 
     @GetMapping("/redis/get")
-    public String get() {
-        return redisTemplate.opsForValue().get("name");
+    public SwordResponse<String> get() {
+        String name = redisTemplate.opsForValue().get("name");
+        return SwordResponse.success(name);
     }
 
     @GetMapping("/redis/remove")
-    public Boolean remove() {
-        return redisTemplate.delete("name");
+    public SwordResponse<Boolean> remove() {
+        redisTemplate.delete("name");
+        return SwordResponse.success();
     }
 }

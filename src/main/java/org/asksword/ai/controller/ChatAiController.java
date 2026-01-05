@@ -1,6 +1,7 @@
 package org.asksword.ai.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.asksword.ai.common.SwordResponse;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,19 +19,21 @@ public class ChatAiController {
 
 
     @PostMapping("/chat")
-    public String chat(String prompt) {
-        return chatClient.prompt()
+    public SwordResponse<String> chat(String prompt) {
+        String content = chatClient.prompt()
                 .user(prompt)
                 .call()
                 .content();
+        return SwordResponse.success(content);
     }
 
     @RequestMapping(value = "/chat2")
-    public Flux<String> fluxChat(String prompt) {
+    public SwordResponse<Flux<String>> fluxChat(String prompt) {
         log.info("prompt = {}", prompt);
-        return chatClient.prompt()
+        Flux<String> flux = chatClient.prompt()
                 .user(prompt)
                 .stream()
                 .content();
+        return SwordResponse.success(flux);
     }
 }
