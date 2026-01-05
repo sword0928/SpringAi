@@ -27,6 +27,8 @@ pipeline {
             }
             steps {
                 sh '''
+                  java -version
+                  mvn -v
                   mvn clean package -DskipTests -B -T 1C
                   ls -lh target
                 '''
