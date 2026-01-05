@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.asksword.ai.common.utils.CommonConstant;
 import org.slf4j.MDC;
 
@@ -14,6 +15,7 @@ import org.slf4j.MDC;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL) // null 字段不返回
+@Accessors(chain = true)
 public class SwordResponse<T> {
 
     /**
@@ -24,7 +26,7 @@ public class SwordResponse<T> {
     /**
      * HTTP 状态码
      */
-    private int status;
+    private String status;
 
     /**
      * 提示信息
@@ -50,23 +52,29 @@ public class SwordResponse<T> {
     public static <T> SwordResponse<T> success() {
         SwordResponse<T> resp = new SwordResponse<>();
         resp.setCode("SUCCESS");
-        resp.setStatus(200);
+        resp.setStatus("200");
         resp.setMessage("OK");
         resp.setTraceId(MDC.get(CommonConstant.TRACE_ID));
         return resp;
-    }    // 静态构造方法 - 成功返回
+    }
+
+    /**
+     * 成功返回
+     */
     public static <T> SwordResponse<T> success(T data) {
         SwordResponse<T> resp = new SwordResponse<>();
         resp.setCode("SUCCESS");
-        resp.setStatus(200);
+        resp.setStatus("200");
         resp.setMessage("OK");
         resp.setData(data);
         resp.setTraceId(MDC.get(CommonConstant.TRACE_ID));
         return resp;
     }
 
-    // 静态构造方法 - 失败返回
-    public static <T> SwordResponse<T> fail(String code, String message, int status) {
+    /**
+     * 失败返回
+     */
+    public static <T> SwordResponse<T> fail(String code, String message, String status) {
         SwordResponse<T> resp = new SwordResponse<>();
         resp.setCode(code);
         resp.setStatus(status);
@@ -75,7 +83,9 @@ public class SwordResponse<T> {
         return resp;
     }
 
-    // 支持自定义扩展字段
+    /**
+     * 支持自定义扩展字段
+     */
     public SwordResponse<T> withExtra(Object extra) {
         this.setExtra(extra);
         return this;

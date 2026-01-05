@@ -1,4 +1,4 @@
-package org.asksword.ai.controller;
+package org.asksword.ai.biz.controller;
 
 import org.asksword.ai.common.NoneMessage;
 import org.asksword.ai.common.SwordResponse;
