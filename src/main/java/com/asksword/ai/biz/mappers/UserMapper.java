@@ -1,4 +1,4 @@
-package com.asksword.ai.biz.mapper;
+package com.asksword.ai.biz.mappers;
 
 import com.asksword.ai.biz.model.entity.UserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

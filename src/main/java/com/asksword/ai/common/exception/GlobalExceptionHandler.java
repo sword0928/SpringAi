@@ -1,6 +1,6 @@
 package com.asksword.ai.common.exception;
 
-import com.asksword.ai.common.enums.ErrorCode;
+import com.asksword.ai.biz.model.SwordResponse;
 import com.asksword.ai.common.constant.CommonConstant;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +30,9 @@ public class GlobalExceptionHandler {
      * 处理自定义业务异常
      */
     @ExceptionHandler(BizException.class)
-    public ResponseEntity<Map<String, Object>> handleBiz(BizException ex, HttpServletRequest request) {
-        ErrorCode error = ex.getErrorCode();
-        return handleWithStatus(ex, request, error.getStatus(), error.getCode(), ex.getMessage());
+    public SwordResponse<?> handleBiz(BizException ex) {
+        ex.printStackTrace();
+        return SwordResponse.fail(ex.getErrorCode().getStatus().toString(), ex.getMessage());
     }
 
     /**

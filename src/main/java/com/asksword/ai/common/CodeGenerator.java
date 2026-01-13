@@ -45,7 +45,7 @@ public class CodeGenerator {
                 .packageConfig(builder -> {
                     builder.parent("com.asksword.ai")
                             .entity("biz.model.entity")   // ✅ 你的实体目录
-                            .mapper("biz.mapper")
+                            .mapper("biz.mappers")
                             .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/src/main/resources/mappers"));
                 })
 

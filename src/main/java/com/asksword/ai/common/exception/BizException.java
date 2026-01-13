@@ -1,22 +1,22 @@
 package com.asksword.ai.common.exception;
 
-import com.asksword.ai.common.enums.ErrorCode;
+import com.asksword.ai.common.enums.ErrorCodeEnum;
 
 public class BizException extends RuntimeException {
 
-    private final ErrorCode errorCode;
+    private final ErrorCodeEnum errorCodeEnum;
 
-    public BizException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.errorCode = errorCode;
+    public BizException(ErrorCodeEnum errorCodeEnum) {
+        super(errorCodeEnum.getMessage());
+        this.errorCodeEnum = errorCodeEnum;
     }
 
-    public BizException(ErrorCode errorCode, String customMessage) {
+    public BizException(ErrorCodeEnum errorCodeEnum, String customMessage) {
         super(customMessage);
-        this.errorCode = errorCode;
+        this.errorCodeEnum = errorCodeEnum;
     }
 
-    public ErrorCode getErrorCode() {
-        return errorCode;
+    public ErrorCodeEnum getErrorCode() {
+        return errorCodeEnum;
     }
 }

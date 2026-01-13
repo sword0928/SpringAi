@@ -24,7 +24,7 @@ public class SwordResponse<T> {
     private String code;
 
     /**
-     * HTTP 状态码
+     * 状态码
      */
     private String status;
 
@@ -53,7 +53,7 @@ public class SwordResponse<T> {
         SwordResponse<T> resp = new SwordResponse<>();
         resp.setCode("SUCCESS");
         resp.setStatus("200");
-        resp.setMessage("OK");
+        resp.setMessage("success");
         resp.setTraceId(MDC.get(CommonConstant.TRACE_ID));
         return resp;
     }
@@ -65,7 +65,7 @@ public class SwordResponse<T> {
         SwordResponse<T> resp = new SwordResponse<>();
         resp.setCode("SUCCESS");
         resp.setStatus("200");
-        resp.setMessage("OK");
+        resp.setMessage("success");
         resp.setData(data);
         resp.setTraceId(MDC.get(CommonConstant.TRACE_ID));
         return resp;
@@ -74,9 +74,9 @@ public class SwordResponse<T> {
     /**
      * 失败返回
      */
-    public static <T> SwordResponse<T> fail(String code, String message, String status) {
+    public static <T> SwordResponse<T> fail(String status, String message) {
         SwordResponse<T> resp = new SwordResponse<>();
-        resp.setCode(code);
+        resp.setCode("FAIL");
         resp.setStatus(status);
         resp.setMessage(message);
         resp.setTraceId(MDC.get(CommonConstant.TRACE_ID));

@@ -20,57 +20,67 @@ public class UserEntity {
 
 
     /**
-    * ID
-    */
+     * ID
+     */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
 
     /**
-    * 用户名
-    */
+     * 用户id
+     */
+    @TableField("user_id")
+    private Long userId;
+    /**
+     * 用户名
+     */
     @TableField("username")
     private String username;
 
 
     /**
-    * 密码
-    */
+     * 密码
+     */
     @TableField("password")
     private String password;
 
 
     /**
-    * 昵称
-    */
+     * 昵称
+     */
     @TableField("nickname")
     private String nickname;
 
 
     /**
-    * 邮箱
-    */
+     * 邮箱
+     */
     @TableField("email")
     private String email;
 
 
     /**
-    * 头像
-    */
+     * 头像
+     */
     @TableField("user_pic")
     private String userPic;
 
+    /**
+     * 状态
+     */
+    @TableField("record_status")
+    private Integer recordStatus;
 
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     @TableField("create_time")
     private LocalDateTime createTime;
 
 
     /**
-    * 修改时间
-    */
+     * 修改时间
+     */
     @TableField("update_time")
     private LocalDateTime updateTime;
 
