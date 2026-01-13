@@ -1,9 +1,12 @@
 package com.asksword.ai.biz.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDateTime;
 
 @Data
 @Accessors(chain = true)
@@ -13,6 +16,7 @@ public class UserInfo {
     /**
      * 用户id
      */
+    @JsonIgnore
     private Long userId;
     /**
      * 用户名
@@ -21,6 +25,7 @@ public class UserInfo {
     /**
      * 密码
      */
+    @JsonIgnore
     private String password;
     /**
      * 昵称
@@ -37,9 +42,9 @@ public class UserInfo {
     /**
      * 创建时间
      */
-    private String createTime;
+    private LocalDateTime createTime;
     /**
-     * 更新时间
+     * 修改时间
      */
-    private String updateTime;
+    private LocalDateTime updateTime;
 }

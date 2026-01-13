@@ -1,21 +1,19 @@
 package com.asksword.ai.biz.service;
 
+import com.asksword.ai.biz.model.dto.UserInfo;
 import com.asksword.ai.biz.model.entity.UserEntity;
 import com.asksword.ai.biz.repository.UserRepository;
 import com.asksword.ai.common.constant.CommonConstant;
 import com.asksword.ai.common.enums.ErrorCodeEnum;
 import com.asksword.ai.common.enums.YesOrNoEnum;
 import com.asksword.ai.common.exception.BizException;
-import com.asksword.ai.common.utils.JwtUtil;
-import com.asksword.ai.common.utils.LocalDateTimeUtil;
-import com.asksword.ai.common.utils.MD5Util;
-import com.asksword.ai.common.utils.SnowflakeIdUtil;
+import com.asksword.ai.common.utils.*;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -51,6 +49,7 @@ public class UserService {
 
     /**
      * 用户登录
+     *
      * @return token
      */
     public String userLogin(String username, String password) {
@@ -88,4 +87,20 @@ public class UserService {
         }
     }
 
+    public UserInfo userInfo(Long userId) {
+        UserEntity userEntity = userRepository.selectUserInfoByUserId(userId);
+        return BeanCopyUtil.copy(userEntity, UserInfo.class);
+    }
+
+    public void updateUserInfo(Long userId, UserInfo userInfo) {
+        if (ObjectUtils.isEmpty(userInfo.getNickname()) || ObjectUtils.isEmpty(userInfo.getEmail())) {
+            throw new BizException(ErrorCodeEnum.PARAMETER_NOT_EMPTY);
+        }
+        UserEntity userEntity = userRepository.selectUserInfoByUserId(userId);
+        userEntity.setNickname(userInfo.getNickname())
+                .setEmail(userInfo.getEmail())
+                .setUsername(ObjectUtils.isEmpty(userInfo.getUsername()) ? userEntity.getUsername() : userInfo.getUsername())
+                .setUpdateTime(LocalDateTimeUtil.now());
+        userRepository.update(userEntity);
+    }
 }

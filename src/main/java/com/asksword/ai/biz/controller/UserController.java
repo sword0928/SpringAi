@@ -2,12 +2,11 @@ package com.asksword.ai.biz.controller;
 
 import com.asksword.ai.biz.model.NoneMessage;
 import com.asksword.ai.biz.model.SwordResponse;
+import com.asksword.ai.biz.model.dto.UserInfo;
 import com.asksword.ai.biz.service.UserService;
+import com.asksword.ai.common.constant.CommonConstant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -33,4 +32,15 @@ public class UserController {
         return SwordResponse.success();
     }
 
+    @GetMapping("/userinfo")
+    private SwordResponse<UserInfo> userInfo(@RequestAttribute(CommonConstant.USER_ID) Long userId) {
+        return SwordResponse.success(userService.userInfo(userId));
+    }
+
+
+    @PostMapping("/update")
+    private SwordResponse<NoneMessage> updateUserInfo(@RequestAttribute(CommonConstant.USER_ID) Long userId, @RequestBody UserInfo userInfo) {
+        userService.updateUserInfo(userId,userInfo);
+        return SwordResponse.success();
+    }
 }

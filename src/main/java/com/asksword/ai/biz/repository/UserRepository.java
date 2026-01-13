@@ -24,4 +24,15 @@ public class UserRepository  {
     public void register(UserEntity userEntity) {
         userMapper.insert(userEntity);
     }
+
+    public UserEntity selectUserInfoByUserId(Long userId) {
+        LambdaQueryWrapper<UserEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserEntity::getUserId, userId)
+                .eq(UserEntity::getRecordStatus, YesOrNoEnum.YES.getCode());
+        return userMapper.selectOne(wrapper);
+    }
+
+    public void update(UserEntity userEntity) {
+        userMapper.updateById(userEntity);
+    }
 }

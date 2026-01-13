@@ -8,6 +8,7 @@ public enum ErrorCodeEnum {
     USER_EXISTS(10001, "USER_EXISTS", "用户已存在"),
     USER_NOT_FOUND(10002, "USER_NOT_FOUND", "用户不存在"),
     PASSWORD_ERROR(10003, "PASSWORD_ERROR", "密码错误"),
+    PARAMETER_NOT_EMPTY(10004, "PARAMETER_NOT_EMPTY", "参数不能为空"),
     ;
 
     private final Integer status;
