@@ -8,7 +8,7 @@
         <version>3.4.12</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.asksword</groupId>
+    <groupId>com.asksword</groupId>
     <artifactId>SwordAi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SwordAi</name>
@@ -78,7 +78,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!--    mybatis-plus    -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.15</version>
+        </dependency>
+        <!--    MyBatis-Plus 代码生成器    -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.15</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
