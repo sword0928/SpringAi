@@ -1,6 +1,6 @@
 package com.asksword.ai.common.filter;
 
-import com.asksword.ai.common.utils.CommonConstant;
+import com.asksword.ai.common.constant.CommonConstant;
 import org.slf4j.MDC;
 
 public class TraceContext {

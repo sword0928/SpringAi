@@ -1,6 +1,6 @@
 package com.asksword.ai.biz.controller;
 
-import com.asksword.ai.common.SwordResponse;
+import com.asksword.ai.biz.model.SwordResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.asksword.ai.common.utils;
+package com.asksword.ai.common.constant;
 
 public class CommonConstant {
 

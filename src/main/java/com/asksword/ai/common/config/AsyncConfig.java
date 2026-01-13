@@ -1,6 +1,6 @@
 package com.asksword.ai.common.config;
 
-import com.asksword.ai.common.utils.CommonConstant;
+import com.asksword.ai.common.constant.CommonConstant;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

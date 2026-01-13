@@ -1,6 +1,6 @@
-package com.asksword.ai.common;
+package com.asksword.ai.biz.model;
 
-import com.asksword.ai.common.utils.CommonConstant;
+import com.asksword.ai.common.constant.CommonConstant;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;

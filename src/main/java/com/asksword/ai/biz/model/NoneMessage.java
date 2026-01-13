@@ -1,4 +1,4 @@
-package com.asksword.ai.common;
+package com.asksword.ai.biz.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

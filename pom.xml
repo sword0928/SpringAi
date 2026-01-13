@@ -90,6 +90,11 @@
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.5.15</version>
         </dependency>
+        <!-- 模板引擎（二选一，推荐 freemarker） -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

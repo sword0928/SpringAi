@@ -1,7 +1,7 @@
 package com.asksword.ai.common.exception;
 
 import com.asksword.ai.common.enums.ErrorCode;
-import com.asksword.ai.common.utils.CommonConstant;
+import com.asksword.ai.common.constant.CommonConstant;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
